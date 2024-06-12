@@ -12,7 +12,7 @@ class owner:
 
     
     def __repr__(self):
-        return f"<item {self.buyer_id} {self.item} {self.price} {self.stock} {self.seller_id}>" 
+        return f"<Curent owner {self.id} {self.first_name} {self.last_name} {self.email} {self.phone} {self.username} {self.location}>"
 
     @classmethod
     def create_table(cls):
@@ -26,30 +26,59 @@ class owner:
                username TEXT,
                location TEXT
             )
-        """    
+        """  
+
+        cursor.execute(sql)
+        conn.commit()
+
+
     @classmethod
     def drop_table(cls):
         sql = """"
-            DROP TABLE IF EXISTS items;
+            DROP TABLE IF EXISTS owner;
         """
 
         cursor.execute(sql)
         conn.commit()  
 
-    def save(self):
-        sql = """"
-            INSERT INTO items(
-                item, price, stock
-            )VALUES (?, ?, ?)
-        """ 
 
+    def save(self):
+        sql = """
+            INSERT INTO owner(
+                first_name, last_name, email, phone, username, location
+            ) VALUES (?, ?, ?, ?, ?, ?)
+        """
         cursor.execute(
             sql,
             (
-                self.item,
-                self.price,
-                self.stock,
+                self.first_name,
+                self.last_name,
+                self.email,
+                self.phone,
+                self.username,
+                self.location,
             ),
-        ) 
+        )
         conn.commit()
         self.id = cursor.lastrowid
+
+
+    def update(self):
+        sql = """
+            UPDATE owner
+            SET first_name=?, last_name=?, email=?, phone=?, username=?, location=?
+            WHERE id=?
+        """
+        cursor.execute(
+            sql,
+            (
+                self.first_name,
+                self.last_name,
+                self.email,
+                self.phone,
+                self.username,
+                self.location,
+                self.id,
+            ),
+        )
+        conn.commit()
