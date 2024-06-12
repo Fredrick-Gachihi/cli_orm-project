@@ -1,4 +1,4 @@
-from .connect import conn, cursor  # Assuming connect.py contains the database connection objects
+from .connect import conn, cursor  
 
 class Owner:
     def __init__(self, id, first_name, last_name, email, phone, username, location):
@@ -8,7 +8,7 @@ class Owner:
         self.email = email
         self.phone = phone
         self.username = username
-        self.location = location  # Fixed typo here
+        self.location = location  
 
     def __repr__(self):
         return f"<Current owner {self.id} {self.first_name} {self.last_name} {self.email} {self.phone} {self.username} {self.location}>"
