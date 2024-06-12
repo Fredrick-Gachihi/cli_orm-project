@@ -1,4 +1,4 @@
-from .models import Owner
+from .owner import Owner
 
 from .item_table import items_table
 

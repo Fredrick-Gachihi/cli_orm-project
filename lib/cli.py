@@ -1,33 +1,51 @@
-import models
-
-import argparse
-from models import Owner
-
-def create_owner(args):
-    owner = Owner(args.id, args.first_name, args.last_name, args.email, args.phone, args.username, args.location)
-    owner.save()
-    print("Owner created successfully.")
-
 def main():
-    parser = argparse.ArgumentParser(description="CLI for managing owners")
-    subparsers = parser.add_subparsers(title="subcommands", dest="command")
+    # print(f"Hello wordld!")
+    items = []
 
+choice = 0
+
+while choice != 4:
+    print("***OWNER***")
+    print("(1) Add an item.")
+    print("(2) Check if item is in stock.")
+    print("(3) Adjust price")
+    print("(4) List all the items.")
+    # print("(5) Quit.")
+    choice = int(input("Enter your choice: "))
     
-    create_parser = subparsers.add_parser("create", help="Create a new owner")
-    create_parser.add_argument("id", type=int, help="Owner ID")
-    create_parser.add_argument("first_name", help="First name")
-    create_parser.add_argument("last_name", help="Last name")
-    create_parser.add_argument("email", help="Email address")
-    create_parser.add_argument("phone", type=int, help="Phone number")
-    create_parser.add_argument("username", help="Username")
-    create_parser.add_argument("location", help="Location")
+    if choice == 1:
+        print("Adiing a item")
+        added1 = input("The item : ") 
+        added2 = input("The price : ") 
+        added3 = input("If is on stock == true ") 
+        items.append([added1, added2, added3])
 
-    args = parser.parse_args()
 
-    if args.command == "create":
-        create_owner(args)
+    elif choice == 2:
+        print("Checking if the item exists.")
+        keyword = input("Enter item to search: ")
+        found = False
+        for item in items:
+            if keyword == item[0]:
+                print("Item found!")
+                found = True
+                break
+        if not found:
+            print("Item not found.")
+    elif choice == 3:
+        print ("Change the current price.")
+        added4 = input("The item: ") 
+        added5 = input("set new price: ") 
+        items.append([added4 , added5])
+        
+    elif choice == 4:
+        print("Show all items")
+        for i in range(len(items)):
+            print(items[i])
+
+
     else:
-        print("ERROR.Please try again.")
+        print("Invalid choice.Quiting programe")
 
-if __name__ == "__main__":
-    main()
+        if __name__ == "__main__":
+            main()
