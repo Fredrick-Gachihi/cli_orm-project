@@ -2,7 +2,6 @@ def main():
     items = []
 
     choice = 0
-
     while choice != 5:  
         print("***OWNER***")
         print("(1) Add an item.")
