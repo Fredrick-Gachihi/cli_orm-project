@@ -1,6 +1,6 @@
-from .connect import conn, cursor
+from .connect import conn, cursor  # Assuming connect.py contains the database connection objects
 
-class owner:
+class Owner:
     def __init__(self, id, first_name, last_name, email, phone, username, location):
         self.id = id
         self.first_name = first_name
@@ -8,17 +8,16 @@ class owner:
         self.email = email
         self.phone = phone
         self.username = username
-        self.locaion = location
+        self.location = location  # Fixed typo here
 
-    
     def __repr__(self):
-        return f"<Curent owner {self.id} {self.first_name} {self.last_name} {self.email} {self.phone} {self.username} {self.location}>"
+        return f"<Current owner {self.id} {self.first_name} {self.last_name} {self.email} {self.phone} {self.username} {self.location}>"
 
     @classmethod
     def create_table(cls):
         sql = """
             CREATE TABLE owner(
-               id INTEGER PRIMARY key,
+               id INTEGER PRIMARY KEY,
                first_name TEXT,
                last_name TEXT,
                email TEXT,
@@ -27,20 +26,16 @@ class owner:
                location TEXT
             )
         """  
-
         cursor.execute(sql)
         conn.commit()
 
-
     @classmethod
     def drop_table(cls):
-        sql = """"
+        sql = """
             DROP TABLE IF EXISTS owner;
         """
-
         cursor.execute(sql)
-        conn.commit()  
-
+        conn.commit()
 
     def save(self):
         sql = """
@@ -48,20 +43,16 @@ class owner:
                 first_name, last_name, email, phone, username, location
             ) VALUES (?, ?, ?, ?, ?, ?)
         """
-        cursor.execute(
-            sql,
-            (
-                self.first_name,
-                self.last_name,
-                self.email,
-                self.phone,
-                self.username,
-                self.location,
-            ),
-        )
+        cursor.execute(sql, (
+            self.first_name,
+            self.last_name,
+            self.email,
+            self.phone,
+            self.username,
+            self.location,
+        ))
         conn.commit()
         self.id = cursor.lastrowid
-
 
     def update(self):
         sql = """
@@ -69,16 +60,13 @@ class owner:
             SET first_name=?, last_name=?, email=?, phone=?, username=?, location=?
             WHERE id=?
         """
-        cursor.execute(
-            sql,
-            (
-                self.first_name,
-                self.last_name,
-                self.email,
-                self.phone,
-                self.username,
-                self.location,
-                self.id,
-            ),
-        )
+        cursor.execute(sql, (
+            self.first_name,
+            self.last_name,
+            self.email,
+            self.phone,
+            self.username,
+            self.location,
+            self.id,
+        ))
         conn.commit()
