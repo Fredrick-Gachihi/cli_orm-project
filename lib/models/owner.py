@@ -36,7 +36,6 @@ class owner:
         cursor.execute(sql)
         conn.commit()  
 
-#to save the the new table 
     def save(self):
         sql = """"
             INSERT INTO items(
