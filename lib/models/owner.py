@@ -54,6 +54,13 @@ class Owner:
         conn.commit()
         self.id = cursor.lastrowid
 
+    @classmethod
+    def create(cls, first_name,last_name,email,phone,username,location):
+        owner = cls(first_name,last_name,email,phone,username,location)
+
+        owner.save()
+        return owner
+
     def update(self):
         sql = """
             UPDATE owner
@@ -70,3 +77,5 @@ class Owner:
             self.id,
         ))
         conn.commit()
+
+        

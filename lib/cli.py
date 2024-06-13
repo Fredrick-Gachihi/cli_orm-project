@@ -1,5 +1,29 @@
+import sqlite3
+
+def create_table():
+    conn = sqlite3.connect("shop.db")
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS items(name TEXT, price REAL, in_stock INTEGER)''')
+    conn.commit()
+    conn.close()
+
+def add_item(name, price, in_stock):
+    conn = sqlite3.connect("shop.db")
+    c = conn.cursor()
+    c.execute("INSERT INTO items (name, price, in_stock) VALUES (?, ?, ?)", (name, price, in_stock))
+    conn.commit()
+    conn.close()
+
+def get_all_items():
+    conn = sqlite3.connect("shop.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM items")
+    items = c.fetchall()
+    conn.close()
+    return items
+
 def main():
-    items = []
+    create_table()
 
     choice = 0
     while choice != 5:  
@@ -13,17 +37,18 @@ def main():
         
         if choice == 1:
             print("Adding an item")
-            keyword = input("Enter the item name: ") 
-            keyword = input("Enter the price: ") 
-            keyword = input("Is it in stock (True/False): ") 
-            items.append([keyword])
+            name = input("Enter the item name: ")
+            price = float(input("Enter the price: "))
+            in_stock = input("Is it in stock (True/False): ").capitalize() == "True"
+            add_item(name, price, in_stock)
 
         elif choice == 2:
             print("Checking if the item exists.")
-            keyword = input("Enter item to search: ")
+            name = input("Enter item to search: ")
+            items = get_all_items()
             found = False
             for item in items:
-                if keyword == item[0]:
+                if name == item[0]:
                     print("Item found!")
                     found = True
                     break
@@ -32,18 +57,18 @@ def main():
 
         elif choice == 3:
             print("Changing the current price.")
-            keyword = input("Enter the item name: ") 
-            keyword = input("Enter the new price: ") 
-            for item in items:
-                if keyword == item[0]:
-                    item[1] = keyword
-                    print("Price updated.")
-                    break
-            else:
-                print("Item not found.")
+            name = input("Enter the item name: ")
+            new_price = float(input("Enter the new price: "))
+            conn = sqlite3.connect("shop.db")
+            c = conn.cursor()
+            c.execute("UPDATE items SET price=? WHERE name=?", (new_price, name))
+            conn.commit()
+            conn.close()
+            print("Price updated.")
 
         elif choice == 4:
             print("Showing all items")
+            items = get_all_items()
             for item in items:
                 print(item)
 
