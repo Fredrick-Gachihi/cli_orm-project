@@ -3,7 +3,7 @@ def main():
 
     choice = 0
     while choice != 5:  
-        print("***OWNER***")
+        print("***CHOOSE YOUR BEST FIT.***")
         print("(1) Add an item.")
         print("(2) Check if item is in stock.")
         print("(3) Adjust price")
