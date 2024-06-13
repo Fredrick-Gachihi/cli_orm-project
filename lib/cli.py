@@ -32,11 +32,11 @@ def main():
 
         elif choice == 3:
             print("Changing the current price.")
-            item_name = input("Enter the item name: ") 
-            new_price = input("Enter the new price: ") 
+            keyword = input("Enter the item name: ") 
+            keyword = input("Enter the new price: ") 
             for item in items:
-                if item_name == item[0]:
-                    item[1] = new_price
+                if keyword == item[0]:
+                    item[1] = keyword
                     print("Price updated.")
                     break
             else:
@@ -51,7 +51,7 @@ def main():
             print("Quitting program.")
 
         else:
-            print("Invalid choice.")
+            print("***Invalid choice.***")
 
 if __name__ == "__main__":
     main()
