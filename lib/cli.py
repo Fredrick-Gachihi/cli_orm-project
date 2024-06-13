@@ -13,10 +13,10 @@ def main():
         
         if choice == 1:
             print("Adding an item")
-            added1 = input("Enter the item name: ") 
-            added2 = input("Enter the price: ") 
-            added3 = input("Is it in stock (True/False): ") 
-            items.append([added1, added2, added3])
+            keyword = input("Enter the item name: ") 
+            keyword = input("Enter the price: ") 
+            keyword = input("Is it in stock (True/False): ") 
+            items.append([keyword])
 
         elif choice == 2:
             print("Checking if the item exists.")
