@@ -24,15 +24,9 @@ Database Management: Initialize and maintain a SQLite database (shop.db) that st
 ## Installation and Usage
 Installation: Clone the repository, install dependencies using Pipenv, and initialize the database.
 Usage: Utilize the CLI commands provided (add an item, list all the items, check whethere its in stock) to manage the shop items efficiently from the command line.
-## Commands
-Add agent: pipenv run python lib/cli.py addagent
-Add property: pipenv run python lib/cli.py addagent
-Add client: pipenv run python lib/cli.py addclient
-View properties: pipenv run python lib/cli.py viewproperties
-View clients: pipenv run python lib/cli.py viewclients
 
 ## Purpose
-This tool simplifies real estate management tasks by providing a streamlined interface to handle agent details, property listings, client registrations, and data retrieval, all within a SQLite database environment. 
+This tool simplifies real estate management tasks by providing a streamlined interface to handle shop all items within a SQLite database environment via the terminal. 
 
 ## Technologies used
 -Python
