@@ -23,7 +23,7 @@ Database Management: Initialize and maintain a SQLite database (shop.db) that st
 
 ## Installation and Usage
 Installation: Clone the repository, install dependencies using Pipenv, and initialize the database.
-Usage: Utilize the CLI commands provided (addagent, addproperty, addclient, viewproperties, viewclients) to manage agents, properties, and clients efficiently from the command line.
+Usage: Utilize the CLI commands provided (add an item, list all the items, check whethere its in stock) to manage the shop items efficiently from the command line.
 ## Commands
 Add agent: pipenv run python lib/cli.py addagent
 Add property: pipenv run python lib/cli.py addagent
