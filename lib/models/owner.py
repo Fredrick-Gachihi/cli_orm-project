@@ -12,11 +12,17 @@ class Owner:
 
     def __repr__(self):
         return f"<Current owner {self.id} {self.first_name} {self.last_name} {self.email} {self.phone} {self.username} {self.location}>"
+    
+    @classmethod
+    def drop_table(cls):
+        sql = "DROP TABLE IF EXISTS items;"
+        cursor.execute(sql)
+        conn.commit
 
     @classmethod
     def create_table(cls):
         sql = """
-            CREATE TABLE owner(
+            CREATE TABLE IF NOT EXISTS owner(
                id INTEGER PRIMARY KEY,
                first_name TEXT,
                last_name TEXT,

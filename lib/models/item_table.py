@@ -1,6 +1,6 @@
 from .connect import conn, cursor
  
-class items_table:
+class ItemTable:
     
     def __init__(self, id, buyer_id, item, price, stock, seller_id):
         self.id = id
@@ -11,17 +11,21 @@ class items_table:
         self.seller_id = seller_id
     
     def __repr__(self):
-        return f"<item {self.buyer_id} {self.item} {self.price} {self.stock} {self.seller_id}>" 
+        return f"<item {self.buyer_id} {self.item} {self.price} {self.stock} {self.seller_id}>"
+    
+    @classmethod
+    def drop_table(cls):
+        sql = "DROP TABLE IF EXISTS items;"
+        cursor.execute(sql)
+        conn.commit
 
     @classmethod
     def create_table(cls):
         sql ="""
-            CREATE TABLE items(
-               id INTEGER PRIMARY KEY,
-               buyer_id INT,
-               item TEXT,
-               stock TEXT,
-               seller_id INT 
+            CREATE TABLE IF NOT EXISTS items(
+               name TEXT,
+               price REAL,
+               in_stock INTEGER 
             )
         """
         cursor.execute(sql)

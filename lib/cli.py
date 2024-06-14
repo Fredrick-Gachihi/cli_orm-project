@@ -1,21 +1,15 @@
 import sqlite3
+import models
 
-def create_table():
-    conn = sqlite3.connect("shop.db")
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS items(name TEXT, price REAL, in_stock INTEGER)''')
-    conn.commit()
-    conn.close()
-
-def add_item(name, price, in_stock):
-    conn = sqlite3.connect("shop.db")
+def add_item(name ,price, in_stock):
+    conn = sqlite3.connect("database/shop.db")
     c = conn.cursor()
     c.execute("INSERT INTO items (name, price, in_stock) VALUES (?, ?, ?)", (name, price, in_stock))
     conn.commit()
     conn.close()
 
 def get_all_items():
-    conn = sqlite3.connect("shop.db")
+    conn = sqlite3.connect("database/shop.db")
     c = conn.cursor()
     c.execute("SELECT * FROM items")
     items = c.fetchall()
@@ -23,8 +17,6 @@ def get_all_items():
     return items
 
 def main():
-    create_table()
-
     choice = 0
     while choice != 5:  
         print("***CHOOSE YOUR BEST FIT.***")
@@ -59,7 +51,7 @@ def main():
             print("Changing the current price.")
             name = input("Enter the item name: ")
             new_price = float(input("Enter the new price: "))
-            conn = sqlite3.connect("shop.db")
+            conn = sqlite3.connect("database/shop.db")
             c = conn.cursor()
             c.execute("UPDATE items SET price=? WHERE name=?", (new_price, name))
             conn.commit()

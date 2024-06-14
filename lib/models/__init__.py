@@ -1,8 +1,9 @@
-from .item_table import items_table
+from .item_table import ItemTable
+from .owner import Owner
 
-items_table.create_table()
+# ItemTable.drop_table()
+# Owner.drop_table()
 
-from .owner import owner
-
-owner.create_table()
+ItemTable.create_table()
+Owner.create_table()
 
